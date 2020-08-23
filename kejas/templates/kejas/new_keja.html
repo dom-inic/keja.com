@@ -1,0 +1,24 @@
+{% extends 'kejas/base.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.css" %}">
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
+<link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/w3.css' %}" rel="stylesheet">
+<head>
+{% block content %}
+<div class="w3-card-4">
+
+<div class="w3-container w3-green">
+  <h2>Add Property Form</h2>
+</div>
+<form action="{% url 'addkeja' %}" method="post" enctype="multipart/form-data" class="w3-container">
+	{% csrf_token %}
+	<!-- the as_p modifier tells django to render all the form elements in paragraph format -->
+	{{ form.as_p }}
+	<button name="submit"><b>Add keja</b></button>
+</form>
+</div>
+  
+{% endblock content %}

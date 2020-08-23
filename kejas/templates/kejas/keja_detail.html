@@ -1,0 +1,45 @@
+{% extends 'kejas/base.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.css" %}">
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
+<link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/w3.css' %}" rel="stylesheet">
+</head>
+{% block content %}
+
+<header class="w3-container w3-light-grey">
+  <h3 style="text-align: center;"><b>{{ keja.property_name }}</b></h3>
+</header>
+
+<div class="w3-container">
+  <p>{{ keja.description }}</p>
+  <hr>
+  <img style="height: 400px; width: 500px; float: left;" src="{{ keja.property_image.url }}" alt="startup image" class=" w3-border w3-padding" >
+  <img style="height: 400px; width: 500px; float: right;" src="{{ keja.more_property_images.url }}" alt="more startup image" class=" w3-border w3-padding" >
+  <hr>
+  <div style="text-align: center;">
+  <p>{{ keja.property_specs }}</p>
+  <hr>
+  <p>{{ keja.location }}</p>
+  <hr>
+  <p>{{ keja.address }}</p>
+  <hr>
+  <p> {{ keja.email_address }}</p>
+  <hr>
+  <button class="w3-green">
+
+  <p>Call: {{ keja.phone_no }}</p>
+  </button>
+  <hr>
+  <p> {{ keja.category }}</p>
+  <hr>
+  </div>
+</div>
+
+<button class="w3-btn-block w3-dark-grey">Book Unit </button>
+<button class="w3-btn-block w3-red">Rate</button>
+
+</div>
+{% endblock content %}

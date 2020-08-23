@@ -1,0 +1,112 @@
+{% extends 'kejas/base.html' %}
+{% load static %}
+<head>
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.css" %}">
+<link rel="stylesheet" href="{% static "kejas/materialize/css/materialize.min.css" %}">
+<link href="{% static 'kejas/materialize/js/materialize.js' %}" rel="stylesheet">
+<link href="{% static 'kejas/materialize/js/materialize.min.js' %}" rel="stylesheet">
+</head>
+<body>
+{% block content %}
+<div class="w3-container w3-light-grey">
+  <h1 class="w3-jumbo">This is the about section</h1>
+  <p class="w3-xxlarge">it will give a brief description of the platform </p>
+</div>
+
+<h4> welcome to keja.com advertise your free keja for free at keja.com. start today and have customers flockin your keja </h4>
+        <form action="#" method="post">
+        {% csrf_token %}
+        <input type="text" name="search" placeholder="search">
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+    
+ {% comment %} <div class="container">
+    <div class="row">
+    {% for keja in kejas %}
+        <div class="col s4">
+            <!-- Promo Content 1 goes here -->
+            <div class="center">
+                <i class="medium material-icons" style="color: #EE6E73">{{ keja.property_name }}</i>
+                <p>{{ keja.description }}</p>
+                <img src="{{keja.property_image  }}" alt="property_image">
+                <p class="light center">{{ keja.location }}</p>
+                <div class="divider"></div>
+            </div>
+        </div>
+        {% endfor %}  {% endcomment %}
+
+        <div class="row">
+        {% for keja in kejas %}
+            <div class="col s4">
+                <div class="large card">
+                <div class="card-title">
+                <i class="w3-animate-top" class="medium material-icons" style="color: #EE6E73">{{ keja.property_name }}</i>
+                </div>
+                    <div class="card-image">
+                     <button class="btn-floating">Book</button>
+                     <h4> {{ keja.location }} </h4>
+                     <a href="{% url 'detail' keja.id %}">
+                     
+                        <img style="height: 400px; width: 500px; float: left;" class="w3-animate-top" src="{{ keja.property_image.url }}" alt="property_image">
+                        </a>
+                    </div>
+                    
+                    <div class="divider"></div>
+                    <div class="card-content">
+                        <p>{{ keja.description }}</p>
+                        
+                        <div class="row">
+                        
+                        </div>
+                    </div>
+        
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+<div class="w3-center">
+<ul class="w3-pagination w3-xlarge w3-border">
+{% if kejas.has_previous %}
+  <li><a href="?page=1" class="w3-hover-purple">&laquo; first</a></li>
+  <li><a href="?page={{ kejas.previous_page_number }}" class="w3-hover-green">previous</a></li>
+  {% endif %}
+  <li>
+  Page {{ kejas.number }} of {{ kejas.paginator.num_pages }}
+  <li>
+  {% if kejas.has_next %}
+  <li><a href="?page= {{ kejas.next_page_number }}" class="w3-hover-red"> next</a></li>
+  <li><a href="?page= {{ kejas.paginator.num_pages }}" class="w3-hover-blue">last &raquo;</a></li>
+{% endif %}
+  {% comment %} <li><a href="#" class="w3-hover-black">4</a></li>
+  <li><a href="#" class="w3-hover-orange">&raquo;</a></li> {% endcomment %}
+</ul>
+</div>
+
+
+
+        {% comment %} <div class="col s4">
+            <!-- Promo Content 2 goes here -->
+            <div class="center">
+                <i class="medium material-icons" style="color: orange">sophia apartment</i>
+                <p>description</p>
+                <p class="light center">location</p>
+                <div class="divider"></div>
+            </div>
+        </div>
+
+        <div class="col s4">
+            <!-- Promo Content 3 goes here -->
+            <div class="center">
+                <i class="medium material-icons" style="color: blue">formula mansion</i>
+                <p>description</p>
+                <p class="light center">location ❤</p>
+                <div class="divider"></div>
+                
+            </div>
+        </div> {% endcomment %}
+    </div>
+{% endblock content %}
+</body>
+
